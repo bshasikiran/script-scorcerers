@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .chat-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+        <input type="text" placeholder="Type your message..." id="user-input">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userMessage = document.getElementById("user-input").value;
+            document.getElementById("chat-box").innerHTML += "<p><strong>You:</strong> " + userMessage + "</p>";
+            document.getElementById("user-input").value = "";
+            replyMessage(userMessage);
+        }
+
+        function replyMessage(message) {
+            var botResponse;
+            if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) {
+                botResponse = "Hi there! How can I assist you?";
+            } else if (message.toLowerCase().includes("how are you")) {
+                botResponse = "I'm just a computer program, so I don't have feelings, but thanks for asking!";
+            } else if (message.toLowerCase().includes("weather")) {
+                botResponse = "I'm sorry, I cannot provide weather updates.";
+            } else if (message.toLowerCase().includes("who are you")) {
+                botResponse = "I'm a simple chatbot created to assist you with basic inquiries.";
+            } else if (message.toLowerCase().includes("time")) {
+                var currentTime = new Date();
+                var hours = currentTime.getHours();
+                var minutes = currentTime.getMinutes();
+                botResponse = "The current time is " + hours + ":" + (minutes < 10 ? "0" + minutes : minutes);
+            } else if (message.toLowerCase().includes("thanks") || message.toLowerCase().includes("thank you")) {
+                botResponse = "You're welcome!";
+            } else if (message.toLowerCase().includes("bye")) {
+                botResponse = "Goodbye! Have a great day!";
+            } else if (message.toLowerCase().includes("name")) {
+                botResponse = "My name is Chatbot.";
+            } else if (message.toLowerCase().includes("how old are you")) {
+                botResponse = "I don't have an age. I'm just a program.";
+            } else if (message.toLowerCase().includes("programming")) {
+                botResponse = "Yes, I can help with programming questions!";
+            } else if (message.toLowerCase().includes("help")) {
+                botResponse = "Sure! What do you need help with?";
+            } else {
+                botResponse = "I'm just a simple chatbot. I don't have an answer to that question.";
+            }
+            document.getElementById("chat-box").innerHTML += "<p><strong>Bot:</strong> " + botResponse + "</p>";
+        }
+    </script>
+</body>
+</html>

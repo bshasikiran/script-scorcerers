@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jumbled Coding Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            margin: 50px auto;
+            width: 400px;
+            text-align: center;
+        }
+        #question {
+            margin-bottom: 20px;
+        }
+        #answer {
+            margin-bottom: 20px;
+        }
+        #feedback {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Jumbled Coding Game</h1>
+        <div id="question">
+            <p>Arrange the following HTML tags in correct order:</p>
+            <p id="jumbledTags"></p>
+        </div>
+        <div id="answer">
+            <input type="text" id="userAnswer" placeholder="Enter your answer">
+            <button onclick="checkAnswer()">Check Answer</button>
+        </div>
+        <div id="feedback"></div>
+    </div>
+
+    <script>
+        // Array of jumbled HTML tags
+        const jumbledTags = ["<html>", "<head>", "<title>", "<body>", "</title>", "</head>", "</html>", "<meta>", "<h1>", "<p>", "</body>"];
+
+        // Correct order of HTML tags
+        const correctOrder = ["<html>", "<head>", "<title>", "</title>", "</head>", "<body>", "<h1>", "<p>", "</body>", "</html>"];
+
+        // Display jumbled HTML tags
+        document.getElementById("jumbledTags").innerText = jumbledTags.join(" ");
+
+        // Function to check user's answer
+        function checkAnswer() {
+            const userAnswer = document.getElementById("userAnswer").value.trim().toLowerCase();
+            if (userAnswer === correctOrder.join(" ")) {
+                document.getElementById("feedback").innerText = "Congratulations! Your answer is correct.";
+            } else {
+                document.getElementById("feedback").innerText = "Sorry, your answer is incorrect. Try again.";
+            }
+        }
+    </script>
+</body>
+</html>
